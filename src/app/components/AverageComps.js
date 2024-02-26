@@ -24,7 +24,7 @@ const AverageComps = () => {
         </div>
         <div className='item'>
             <h2>Difference</h2>
-            <h1 style={diffStyle}>{diff}</h1>
+            <h1 style={diffStyle}>{diff} lbs</h1>
         </div>
 
     </div>
