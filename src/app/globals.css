@@ -105,3 +105,15 @@ a {
     color-scheme: dark;
   }
 }
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  border: 2px solid #ccc;
+  padding: 20px;
+  margin:20px;
+}
+
+.item {
+  text-align:center;
+}
