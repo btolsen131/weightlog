@@ -17,9 +17,8 @@ const LineChart = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/getWeights');
+      const response = await fetch('/api/getWeights', {cache: "no-store"});
       const data = await response.json();
-      debugger;
 
       setChartOptions({
         xAxis: {
