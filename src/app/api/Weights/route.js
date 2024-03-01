@@ -3,30 +3,13 @@ import prisma from '../../prisma';
 
 export async function GET(req, res){
   try {
-      let data = [
-        {
-          "date": "2024-02-27",
-          "value": 235
-        },
-        {
-          "date": "2024-02-26",
-          "value": 238
-        },
-        {
-          "date": "2024-02-25",
-          "value": 233
-        },
-        {
-          "date": "2024-02-24",
-          "value": 239
-        },
-        {
-          "date": "2024-02-23",
-          "value": 234
+      let data = await prisma.weights.findMany({
+        orderBy: {
+          date: 'asc'
         }
-      ];
-      let dataa = await prisma.weights.findMany();
-      return NextResponse.json(dataa, {
+      });
+
+      return NextResponse.json(data, {
         status: 200,
       });
   } catch (err){
