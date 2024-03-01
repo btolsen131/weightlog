@@ -1,0 +1,13 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model weights {
+  weight String   @db.VarChar
+  date   DateTime @id(map: "weights_pk") @db.Date
+}

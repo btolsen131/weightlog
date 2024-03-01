@@ -17,16 +17,30 @@ const LineChart = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('/api/getWeights', {cache: "no-store"});
+      const response = await fetch('/api/Weights', {cache: "no-store"});
       const data = await response.json();
 
+      console.log(data, "HERE");
+
       setChartOptions({
+        title: {
+          text: "Total Weight Chart"
+        },
         xAxis: {
-          categories: data.map(data => data.date),
+          categories: data.map(data => new Date(data.date).toLocaleDateString()),
+        },
+        yAxis:{
+          max: 240,
+          title: {
+            text: "Weight"
+          }
         },
         series: [{
-          data: data.map(data => data.value),
+          data: data.map(data => parseInt(data.weight)),
         }],
+        legend: {
+          enabled: false,
+        },
         plotOptions: {
           series: {
             point:{
@@ -38,7 +52,7 @@ const LineChart = () => {
         }
       })
     } catch (err) {
-      console.log("Something went wrong",err)
+      console.log("Something went wrong with the line chart",err)
     }
   };
 
@@ -49,7 +63,6 @@ const LineChart = () => {
         options={chartOptions}
         style={{ width:'100%', height: '80%'}}
       />
-      <h3>Hovering over {hoverData}</h3>
     </div>
   );
 };
