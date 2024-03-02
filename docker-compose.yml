@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: brianolsen
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: WeightLog
+    ports:
+      - "5432:5432"
+    volumes:
+      - postrgres_data:/var/lib/postgresql/data
+
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      DATABASE_URL: postgres://brianolsen:postgres@postgres:5432/WeightLog
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+
+volumes:
+  postrgres_data:
+
